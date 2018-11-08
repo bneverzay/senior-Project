@@ -1,0 +1,101 @@
+<ion-view title="Detail Rent">
+  <ion-content padding="true" class="has-header">
+
+    <div class="list">
+
+      <div class="item item-divider" style="text-align: center;">Rent of Accommodation</div>
+
+      <div class="item">
+        <p>Rent: {{rentalinvoice.rent}}</p>
+      </div>
+
+      <div class="item item-divider" style="text-align: center;">Unit of Energy</div>
+
+      <div class="item">
+        <p>Water: {{rentalinvoice.waterunit}}</p>
+        <p>Electricity: {{rentalinvoice.electricityunit}}</p>
+      </div>
+
+      <div class="item item-divider" style="text-align: center;">Energy Used</div>
+
+      <div class="item">
+        <p>Water: {{rentalinvoice.unitofwaterused}}</p>
+        <p>Electricity: {{rentalinvoice.unitofelectricityused}}</p>
+      </div>
+
+      <div class="item item-divider" style="text-align: center;">Service Fees</div>
+
+      <div class="item">
+        <p>Internet fee: {{rentalinvoice.internetfee}}</p>
+        <p>Fitness fee: {{rentalinvoice.fitnessfee}}</p>
+        <p>Swimming fee: {{rentalinvoice.swimmingfee}}</p>
+        <p>Other fee: {{rentalinvoice.otherfee}}</p>
+      </div>
+
+      <div class="item item-divider" style="text-align: center;">Fine</div>
+
+      <div class="item">
+        <p>Fine: {{rentalinvoice.fine}}</p>
+      </div>
+
+      <div class="item item-divider" style="text-align: center;">Total Rent</div>
+
+      <div class="item">
+        <p>Total: {{rentalinvoice.totalrent}}</p>
+        <p>Bill date: {{rentalinvoice.date}}</p>
+      </div>
+
+      <div class="item item-divider" style="text-align: center;">Transfer Money</div>
+
+      <div class="item">
+        <p ng-repeat="rental in rentals" ng-if="member.keyStringMemberEntity == rental.memberIDforBooking">Bank: <span ng-repeat="accommodation in accommodations" ng-if="member.keyStringMemberEntity == rental.memberIDforBooking && rental.accommodationIDforBooking == accommodation.keyStringAccommodationEntity">{{accommodation.bank}}</span></p>
+        <p ng-repeat="rental in rentals" ng-if="member.keyStringMemberEntity == rental.memberIDforBooking">Account name: <span ng-repeat="accommodation in accommodations" ng-if="member.keyStringMemberEntity == rental.memberIDforBooking && rental.accommodationIDforBooking == accommodation.keyStringAccommodationEntity">{{accommodation.accountname}}</span></p>
+        <p ng-repeat="rental in rentals" ng-if="member.keyStringMemberEntity == rental.memberIDforBooking">Account no: <span ng-repeat="accommodation in accommodations" ng-if="member.keyStringMemberEntity == rental.memberIDforBooking && rental.accommodationIDforBooking == accommodation.keyStringAccommodationEntity">{{accommodation.accountno}}</span></p>
+      </div>
+
+      <div class="item item-divider" style="text-align: center;">Payment</div>
+
+      <form name="paymentRent" novalidate>
+        <div class="item">
+          <label class="item item-input item-stacked-label">
+          <span class="input-label">Name:</span>
+          <input id="name" name="name" type="text" maxlength="60" placeholder="Enter name" ng-model="payment.name" required>
+        </label>
+          <div class="padding">
+            <p style="color: #FF0000;" ng-show="paymentRent.name.$error.required">* Name is required</p>
+          </div>
+
+          <label class="item item-input item-stacked-label">
+          <span class="input-label">Date:</span>
+          <input id="date" name="date" type="date" ng-model="datepayment" required>
+        </label>
+          <div class="padding">
+            <p style="color: #FF0000;" ng-show="paymentRent.date.$error.required">* Date is required</p>
+          </div>
+
+          <label class="item item-input item-stacked-label">
+          <span class="input-label">Time (approximate time):</span>
+          <input id="time" name="time" type="time" ng-model="timepayment" required>
+        </label>
+          <div class="padding">
+            <p style="color: #FF0000;" ng-show="paymentRent.time.$error.required">* Time is required</p>
+          </div>
+
+          <label class="item item-input item-stacked-label">
+          <span class="input-label">Amount Money:</span>
+          <input id="amountmoney" name="amountmoney" type="number" min="0" max="20000" ng-model="payment.amountmoney" required>
+        </label>
+          <div class="padding">
+            <p style="color: #FF0000;" ng-show="paymentRent.amountmoney.$error.required">* Amount money is required</p>
+          </div>
+
+          <div class="class-button-search">
+            <button class="button button-positive button-block icon-left ion-android-checkmark-circle" ng-disabled="paymentRent.$invalid"
+              ng-click="savePaymentRent(payment,datepayment,timepayment,member,rentalinvoice)">Confirm</button>
+          </div>
+        </div>
+      </form>
+
+    </div>
+  </ion-content>
+</ion-view>

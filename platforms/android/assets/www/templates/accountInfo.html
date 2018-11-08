@@ -1,0 +1,49 @@
+<ion-view title="Account Info" hide-nav-bar="false">
+    <ion-content padding="true" class="has-header">
+
+        <ion-refresher on-refresh="doRefresh()">
+        </ion-refresher>
+
+        <form class="list">
+            <label class="item item-input">
+                <span class="input-label">First name:</span>
+                <input id="firstname" name="firstname" type="text" maxlength="30" placeholder="{{member.firstname}}" ng-model="edit.firstname">
+            </label>
+            <label class="item item-input">
+                <span class="input-label">Last name:</span>
+                <input id="lastname" name="lastname" type="text" maxlength="30" placeholder="{{member.lastname}}" ng-model="edit.lastname">
+            </label>
+            <label class="item item-input">
+                <span class="input-label">Birthdate:</span>
+                <input id="birthdate" name="birthdate" type="date" value="{{member.birthdate}}" ng-model="edit.birthdate">
+            </label>
+        </form>
+        <h4 style="color:#000000;font-weight:400;">Gender:</h4>
+        <form class="list">
+            <ion-radio id="male" name="gender" ng-model="gender" ng-value="'Male'">Male</ion-radio>
+            <ion-radio id="female" name="gender" ng-model="gender" ng-value="'Female'">Female</ion-radio>
+            <div class="spacer" style="width: 300px; height: 15px;"></div>
+            <label class="item item-input">
+                <span class="input-label">Address:</span><textarea id="address" name="address" maxlength="60" placeholder="{{member.address}}" ng-model="edit.address"></textarea>
+            </label>
+        </form>
+        <h4 style="color:#000000;font-weight:400;">Occupation:</h4>
+        <form class="list">
+            <ion-radio id="student" name="occupation" ng-model="occupation" ng-value="'Student'">Student</ion-radio>
+            <ion-radio id="teacher" name="occupation" ng-model="occupation" ng-value="'Teacher'">Teacher</ion-radio>
+            <ion-radio id="security-guard" name="occupation" ng-model="occupation" ng-value="'Security-guard'">Security guard</ion-radio>
+            <ion-radio id="maid" name="occupation" ng-model="occupation" ng-value="'Maid'">Maid</ion-radio>
+            <div class="spacer" style="width: 300px; height: 15px;"></div>
+            <label class="item item-input">
+                <span class="input-label">Telephone:</span>
+                <input id="telephone" name="telephone" type="text" maxlength="10" placeholder="{{member.telephone}}" ng-model="edit.telephone">
+            </label>
+            <label class="item item-input">
+                <span class="input-label">Email:</span>
+                <input id="email" name="email" type="email" maxlength="30" placeholder="{{member.email}}" ng-model="edit.email">
+            </label>
+            <button class="button button-positive  button-block icon-left ion-android-checkmark-circle" ng-click="showConfirmUpdateInformation(edit,gender,occupation,member)">Confirm</button>
+        </form>
+
+    </ion-content>
+</ion-view>

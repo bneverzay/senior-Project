@@ -1,0 +1,80 @@
+<ion-view title="Payment Booking">
+  <ion-content padding="true" class="has-header">
+
+    <div class="list">
+
+      <div class="item item-divider" style="text-align: center;">Accommodation Info</div>
+
+      <div class="item">
+        <p ng-repeat="accommodation in accommodations" ng-show="accommodation.typeofaccommodation == 'apartment' && accommodation.keyStringAccommodationEntity == rental.accommodationID"><i ng-show="accommodation.typeofaccommodation == 'apartment' && accommodation.keyStringAccommodationEntity == rental.accommodationID"></i>          {{accommodation.accommodationname}} Apartment</p>
+        <p ng-repeat="accommodation in accommodations" ng-show="accommodation.typeofaccommodation == 'house' && accommodation.keyStringAccommodationEntity == rental.accommodationID"><i ng-show="accommodation.typeofaccommodation == 'house' && accommodation.keyStringAccommodationEntity == rental.accommodationID"></i>          {{accommodation.accommodationname}} House</p>
+        <p ng-repeat="accommodation in accommodations" ng-show="accommodation.typeofaccommodation == 'apartment' && accommodation.keyStringAccommodationEntity == rental.accommodationID">Type of room: <span ng-repeat="room in rooms" ng-show="room.keyStringRoomEntity == rental.roomID && room.typeroomofapartment == 'fan'">Fan</span>
+          <span ng-repeat="room in rooms" ng-show="room.keyStringRoomEntity == rental.roomID && room.typeroomofapartment == 'airconditioner'">Air Conditioner</span>
+        </p>
+        <p ng-repeat="accommodation in accommodations" ng-show="accommodation.typeofaccommodation == 'apartment' && accommodation.keyStringAccommodationEntity == rental.accommodationID">Room number: <span ng-repeat="room in rooms" ng-show="room.keyStringRoomEntity == rental.roomID">{{room.roomnumber}}</span></p>
+        <p ng-repeat="accommodation in accommodations" ng-show="accommodation.typeofaccommodation == 'house' && accommodation.keyStringAccommodationEntity == rental.accommodationID">House number: <span ng-repeat="room in rooms" ng-show="room.keyStringRoomEntity == rental.roomID">{{room.housenumber}}</span></p>
+        <p ng-repeat="room in rooms" ng-show="room.keyStringRoomEntity == rental.roomID">Deposit: {{room.deposit}} Baht</p>
+        <p ng-repeat="room in rooms" ng-show="room.keyStringRoomEntity == rental.roomID">Rentalagreement: {{room.rentalagreement}} {{room.typeofrentalagreement}}</p>
+      </div>
+
+      <div class="item item-divider" style="text-align: center;">Status Booking</div>
+
+      <div class="item">
+        <p>Check-In:<span> {{rental.moveinaccommodation}}</span></p>
+        <p>Check-Out:<span> {{rental.moveoutaccommodation}}</span></p>
+      </div>
+
+      <div class="item item-divider" style="text-align: center;">Transfer Money</div>
+
+      <div class="item">
+        <p ng-repeat="accommodation in accommodations" ng-show="accommodation.keyStringAccommodationEntity == rental.accommodationID">Bank: {{accommodation.bank}}</p>
+        <p ng-repeat="accommodation in accommodations" ng-show="accommodation.keyStringAccommodationEntity == rental.accommodationID">Account name: {{accommodation.accountname}}</p>
+        <p ng-repeat="accommodation in accommodations" ng-show="accommodation.keyStringAccommodationEntity == rental.accommodationID">Account no: {{accommodation.accountno}}</p>
+      </div>
+
+      <div class="item item-divider" style="text-align: center;">Payment</div>
+
+      <form name="paymentBooking" novalidate>
+        <div class="item">
+          <label class="item item-input item-stacked-label">
+          <span class="input-label">Name:</span>
+          <input id="name" name="name" type="text" maxlength="60" placeholder="Enter name" ng-model="payment.name" required>
+        </label>
+          <div class="padding">
+            <p style="color: #FF0000;" ng-show="paymentBooking.name.$error.required">* Name is required</p>
+          </div>
+
+          <label class="item item-input item-stacked-label">
+          <span class="input-label">Date:</span>
+          <input id="date" name="date" type="date" ng-model="datepayment" required>
+        </label>
+          <div class="padding">
+            <p style="color: #FF0000;" ng-show="paymentBooking.date.$error.required">* Date is required</p>
+          </div>
+
+          <label class="item item-input item-stacked-label">
+          <span class="input-label">Time (approximate time):</span>
+          <input id="time" name="time" type="time" ng-model="timepayment" required>
+        </label>
+          <div class="padding">
+            <p style="color: #FF0000;" ng-show="paymentBooking.time.$error.required">* Time is required</p>
+          </div>
+
+          <label class="item item-input item-stacked-label">
+          <span class="input-label">Amount Money:</span>
+          <input id="amountmoney" name="amountmoney" type="number" min="0" max="20000" ng-model="payment.amountmoney" required>
+        </label>
+          <div class="padding">
+            <p style="color: #FF0000;" ng-show="paymentBooking.amountmoney.$error.required">* Amount money is required</p>
+          </div>
+
+          <div class="class-button-search">
+            <button class="button button-positive button-block icon-left ion-android-checkmark-circle" ng-disabled="paymentBooking.$invalid"
+              ng-click="savePaymentBooking(payment,datepayment,timepayment,rental,member)">Confirm</button>
+          </div>
+
+        </div>
+      </form>
+    </div>
+  </ion-content>
+</ion-view>

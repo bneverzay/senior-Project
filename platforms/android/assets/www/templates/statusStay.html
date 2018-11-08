@@ -1,0 +1,13 @@
+<ion-view title="Status Stay">
+    <ion-content padding="true" class="has-header">
+        <div class="list card">
+            <div class="item item-avatar item-icon-right" ng-repeat="accommodation in accommodations" ng-if="accommodation.keyStringAccommodationEntity == rental.accommodationID">
+                <img src="img/logo.png">
+                <h3 ng-show="accommodation.typeofaccommodation == 'apartment'">{{accommodation.accommodationname}} Apartment</h3>
+                <h3 ng-show="accommodation.typeofaccommodation == 'house'">{{accommodation.accommodationname}} House</h3>
+                <p>Waiting move into accomodation.</p>
+                <p>Check In: {{rental.moveinaccommodation}}</p>
+            </div>
+        </div>
+    </ion-content>
+</ion-view>

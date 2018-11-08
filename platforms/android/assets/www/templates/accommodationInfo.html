@@ -1,0 +1,83 @@
+<ion-view title="Accommodation Info">
+    <ion-content padding="true" class="has-header">
+
+        <div class="list">
+            <img class="full-image" src="http://2-dot-pjpnd-166013.appspot.com/getFileContent?blobkey={{pictureaccommodation}}">
+
+            <div class="item item-divider" style="text-align: center;" ng-repeat="accommodation in accommodations" ng-show="accommodation.keyStringAccommodationEntity == rental.accommodationID && accommodation.typeofaccommodation == 'apartment'">{{accommodation.accommodationname}} Apartment</div>
+            <div class="item item-divider" style="text-align: center;" ng-repeat="accommodation in accommodations" ng-show="accommodation.keyStringAccommodationEntity == rental.accommodationID && accommodation.typeofaccommodation == 'house'">{{accommodation.accommodationname}} House</div>
+
+            <div class="item">
+                <p ng-repeat="accommodation in accommodations" ng-show="accommodation.keyStringAccommodationEntity == rental.accommodationID && accommodation.typeofaccommodation == 'apartment'"><span ng-repeat="room in rooms" ng-show="rental.roomID == room.keyStringRoomEntity">Room Number: {{room.roomnumber}}</span></p>
+                <p ng-repeat="accommodation in accommodations" ng-show="accommodation.keyStringAccommodationEntity == rental.accommodationID && accommodation.typeofaccommodation == 'house'"><span ng-repeat="room in rooms" ng-show="rental.roomID == room.keyStringRoomEntity">House Number: {{room.housenumber}}</span></p>
+            </div>
+
+            <div class="item item-divider" style="text-align: center;">Status Booking</div>
+
+            <div class="item">
+                <p ng-repeat="room in rooms" ng-show="rental.roomID == room.keyStringRoomEntity">Today to {{rental.moveoutaccommodation}}</p>
+            </div>
+
+            <div class="item item-divider" style="text-align: center;" ng-repeat="accommodation in accommodations" ng-show="accommodation.keyStringAccommodationEntity == rental.accommodationID && accommodation.typeofaccommodation == 'apartment'">Type of Room</div>
+
+            <div class="item">
+                <p ng-repeat="room in rooms" ng-show="rental.roomID == room.keyStringRoomEntity && room.typeroomofapartment == 'fan'">Fan</p>
+                <p ng-repeat="room in rooms" ng-show="rental.roomID == room.keyStringRoomEntity && room.typeroomofapartment == 'airconditioner'">Air Conditioner</p>
+            </div>
+
+            <div class="item item-divider" style="text-align: center;">Facilities</div>
+
+            <div class="item">
+                <p ng-repeat="accommodation in accommodations" ng-show="accommodation.keyStringAccommodationEntity == rental.accommodationID && accommodation.fan == 'fan'">Fan</p>
+                <p ng-repeat="accommodation in accommodations" ng-show="accommodation.keyStringAccommodationEntity == rental.accommodationID && accommodation.airconditioner == 'airconditioner'">Air Conditioner</p>
+                <p ng-repeat="accommodation in accommodations" ng-show="accommodation.keyStringAccommodationEntity == rental.accommodationID && accommodation.waterheater == 'waterheater'">Water Heater</p>
+                <p ng-repeat="accommodation in accommodations" ng-show="accommodation.keyStringAccommodationEntity == rental.accommodationID && accommodation.refrigerator == 'refrigerator'">Refrigerator</p>
+                <p ng-repeat="accommodation in accommodations" ng-show="accommodation.keyStringAccommodationEntity == rental.accommodationID && accommodation.television == 'television'">Television</p>
+                <p ng-repeat="accommodation in accommodations" ng-show="accommodation.keyStringAccommodationEntity == rental.accommodationID && accommodation.furniture == 'furniture'">Furniture</p>
+            </div>
+
+            <div class="item item-divider" style="text-align: center;" ng-repeat="accommodation in accommodations" ng-show="accommodation.keyStringAccommodationEntity == rental.accommodationID && accommodation.typeofaccommodation == 'apartment'">Information of Room</div>
+
+            <div class="item">
+                <p ng-repeat="accommodation in accommodations" ng-show="accommodation.keyStringAccommodationEntity == rental.accommodationID && accommodation.typeofaccommodation == 'apartment'"><span ng-repeat="room in rooms" ng-show="rental.roomID == room.keyStringRoomEntity">Balcony Apartment: {{room.balconyapartment}}</span></p>
+                <p ng-repeat="accommodation in accommodations" ng-show="accommodation.keyStringAccommodationEntity == rental.accommodationID && accommodation.typeofaccommodation == 'apartment'"><span ng-repeat="room in rooms" ng-show="rental.roomID == room.keyStringRoomEntity">Apartment Size: {{room.accommodationsize}} Square meter</span></p>
+                <p ng-repeat="accommodation in accommodations" ng-show="accommodation.keyStringAccommodationEntity == rental.accommodationID && accommodation.typeofaccommodation == 'apartment' && room.typeofbed == 'singlebed'">Type of Bed: Single bed</p>
+                <p ng-repeat="accommodation in accommodations" ng-show="accommodation.keyStringAccommodationEntity == rental.accommodationID && accommodation.typeofaccommodation == 'apartment' && room.typeofbed == 'doublebed'">Type of Bed: Double bed</p>
+                <p ng-repeat="accommodation in accommodations" ng-show="accommodation.keyStringAccommodationEntity == rental.accommodationID && accommodation.typeofaccommodation == 'apartment' && room.typeofbathroom == 'sharedbathroom'">Type of Bathroom: Shared bathroom</p>
+                <p ng-repeat="accommodation in accommodations" ng-show="accommodation.keyStringAccommodationEntity == rental.accommodationID && accommodation.typeofaccommodation == 'apartment' && room.typeofbathroom == 'separatebathroom'">Type of Bathroom: Separate bathroom</p>
+                <p ng-repeat="accommodation in accommodations" ng-show="accommodation.keyStringAccommodationEntity == rental.accommodationID && accommodation.typeofaccommodation == 'apartment'"><span ng-repeat="room in rooms" ng-show="rental.roomID == room.keyStringRoomEntity">Max Capacity: {{room.maxcapacity}} Person</span></p>
+                <p ng-repeat="accommodation in accommodations" ng-show="accommodation.keyStringAccommodationEntity == rental.accommodationID && accommodation.typeofaccommodation == 'apartment'"><span ng-repeat="room in rooms" ng-show="rental.roomID == room.keyStringRoomEntity">Rent: {{room.rent}} Baht</span></p>
+                <p ng-repeat="accommodation in accommodations" ng-show="accommodation.keyStringAccommodationEntity == rental.accommodationID && accommodation.typeofaccommodation == 'apartment'"><span ng-repeat="room in rooms" ng-show="rental.roomID == room.keyStringRoomEntity">Deposit: {{room.deposit}} Baht</span></p>
+                <p ng-repeat="accommodation in accommodations" ng-show="accommodation.keyStringAccommodationEntity == rental.accommodationID && accommodation.typeofaccommodation == 'apartment'"><span ng-repeat="room in rooms" ng-show="rental.roomID == room.keyStringRoomEntity">rentalagreement: {{room.rentalagreement}} {{room.typeofrentalagreement}}</span></p>
+            </div>
+
+            <div class="item item-divider" style="text-align: center;" ng-repeat="accommodation in accommodations" ng-show="accommodation.keyStringAccommodationEntity == rental.accommodationID && accommodation.typeofaccommodation == 'house'">Information of House</div>
+
+            <div class="item">
+                <p ng-repeat="accommodation in accommodations" ng-show="accommodation.keyStringAccommodationEntity == rental.accommodationID && accommodation.typeofaccommodation == 'house'"><span ng-repeat="room in rooms" ng-show="rental.roomID == room.keyStringRoomEntity">Number of Bedroom: {{room.numberofbedroom}} Room</span></p>
+                <p ng-repeat="accommodation in accommodations" ng-show="accommodation.keyStringAccommodationEntity == rental.accommodationID && accommodation.typeofaccommodation == 'house'"><span ng-repeat="room in rooms" ng-show="rental.roomID == room.keyStringRoomEntity">Number of Bathroom: {{room.numberofbathroom}} Room</span></p>
+                <p ng-repeat="accommodation in accommodations" ng-show="accommodation.keyStringAccommodationEntity == rental.accommodationID && accommodation.typeofaccommodation == 'house'"><span ng-repeat="room in rooms" ng-show="rental.roomID == room.keyStringRoomEntity">Living Room: {{room.livingroom}}</span></p>
+                <p ng-repeat="accommodation in accommodations" ng-show="accommodation.keyStringAccommodationEntity == rental.accommodationID && accommodation.typeofaccommodation == 'house'"><span ng-repeat="room in rooms" ng-show="rental.roomID == room.keyStringRoomEntity">Kitchen Room: {{room.kitchenroom}}</span></p>
+                <p ng-repeat="accommodation in accommodations" ng-show="accommodation.keyStringAccommodationEntity == rental.accommodationID && accommodation.typeofaccommodation == 'house'"><span ng-repeat="room in rooms" ng-show="rental.roomID == room.keyStringRoomEntity">House Size: {{room.accommodationsize}} Square meter</span></p>
+                <p ng-repeat="accommodation in accommodations" ng-show="accommodation.keyStringAccommodationEntity == rental.accommodationID && accommodation.typeofaccommodation == 'house' && room.typeofbed == 'singlebed'">Type of Bed: Single bed</p>
+                <p ng-repeat="accommodation in accommodations" ng-show="accommodation.keyStringAccommodationEntity == rental.accommodationID && accommodation.typeofaccommodation == 'house' && room.typeofbed == 'doublebed'">Type of Bed: Double bed</p>
+                <p ng-repeat="accommodation in accommodations" ng-show="accommodation.keyStringAccommodationEntity == rental.accommodationID && accommodation.typeofaccommodation == 'house' && room.typeofbed == 'singlebedanddoublebed'">Type of Bed: Single bed, Double bed</p>
+                <p ng-repeat="accommodation in accommodations" ng-show="accommodation.keyStringAccommodationEntity == rental.accommodationID && accommodation.typeofaccommodation == 'house' && room.typeofbathroom == 'sharedbathroom'">Type of Bathroom: Shared bathroom</p>
+                <p ng-repeat="accommodation in accommodations" ng-show="accommodation.keyStringAccommodationEntity == rental.accommodationID && accommodation.typeofaccommodation == 'house' && room.typeofbathroom == 'separatebathroom'">Type of Bathroom: Separate bathroom</p>
+                <p ng-repeat="accommodation in accommodations" ng-show="accommodation.keyStringAccommodationEntity == rental.accommodationID && accommodation.typeofaccommodation == 'house' && room.typeofbathroom == 'sharedbathroomandseparatebathroom'">Type of Bathroom: Shared bathroom, Separate bathroom</p>
+                <p ng-repeat="accommodation in accommodations" ng-show="accommodation.keyStringAccommodationEntity == rental.accommodationID && accommodation.typeofaccommodation == 'house'"><span ng-repeat="room in rooms" ng-show="rental.roomID == room.keyStringRoomEntity">Max Capacity: {{room.maxcapacity}} Person/Room</span></p>
+                <p ng-repeat="accommodation in accommodations" ng-show="accommodation.keyStringAccommodationEntity == rental.accommodationID && accommodation.typeofaccommodation == 'house'"><span ng-repeat="room in rooms" ng-show="rental.roomID == room.keyStringRoomEntity">Rent: {{room.rent}} Baht</span></p>
+                <p ng-repeat="accommodation in accommodations" ng-show="accommodation.keyStringAccommodationEntity == rental.accommodationID && accommodation.typeofaccommodation == 'house'"><span ng-repeat="room in rooms" ng-show="rental.roomID == room.keyStringRoomEntity">Deposit: {{room.deposit}} Baht</span></p>
+                <p ng-repeat="accommodation in accommodations" ng-show="accommodation.keyStringAccommodationEntity == rental.accommodationID && accommodation.typeofaccommodation == 'house'"><span ng-repeat="room in rooms" ng-show="rental.roomID == room.keyStringRoomEntity">rentalagreement: {{room.rentalagreement}} {{room.typeofrentalagreement}}</span></p>
+            </div>
+
+            <div class="item item-divider" style="text-align: center;">Rental Agreement</div>
+
+            <div class="item">
+                <img class="full-image" src="http://2-dot-pjpnd-166013.appspot.com/getFileContent?blobkey={{rental.rentalagreement}}">
+            </div>
+
+        </div>
+
+    </ion-content>
+</ion-view>

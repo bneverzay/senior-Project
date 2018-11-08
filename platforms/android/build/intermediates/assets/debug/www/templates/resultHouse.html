@@ -1,0 +1,34 @@
+<ion-view title="Result House">
+  <ion-nav-buttons side="left">
+    <button class="button back-button buttons button-clear header-item" ui-sref="menu.home({memberID:member.keyStringMemberEntity})">
+      <i class="icon ion-arrow-left-c"></i> 
+    </button>
+  </ion-nav-buttons>
+  <ion-content padding="true" class="has-header">
+
+    <ion-refresher on-refresh="doRefresh()">
+    </ion-refresher>
+
+    <div class="list card" ng-repeat="accommodation in accommodations" ng-hide="accommodation.keyStringAccommodationEntity == null || accommodation.keyStringAccommodationEntity == ''">
+      <ion-item class="item-avatar">
+        <img src="img/logo.png">
+        <h2><i class="icon ion-home"></i> {{accommodation.accommodationname}} House</h2>
+        <p><i class="icon ion-social-usd"></i> Rental rates {{accommodation.rentrates}} Baht/Month</p>
+        <p><i class="icon ion-location"></i> {{accommodation.address}}, {{accommodation.district}}, {{accommodation.province}}</p>
+      </ion-item>
+      <div class=" item item-image">
+        <img src="http://2-dot-pjpnd-166013.appspot.com/getFileContent?blobkey={{accommodation.pictureaccommodation}}" style="display: block; width: 100%; height: auto; margin-left: auto; margin-right: auto;">
+      </div>
+      <center>
+        <div class="item item-body">
+          <button class="button button-dark button-small button-clear icon ion-android-more-horizontal" ui-sref="detailAccommodation({accommodationID:accommodation.keyStringAccommodationEntity,memberID:member.keyStringMemberEntity})"> More informations</button>
+          <button style="border-radius:6px 6px 6px 6px;" class="button button-dark button-small button-clear icon ion-chatboxes" ui-sref="detailAccommodation({accommodationID:accommodation.keyStringAccommodationEntity,memberID:member.keyStringMemberEntity})"> Comments</button>
+        </div>
+      </center>
+    </div>
+    <center ng-repeat="accommodation in accommodations" ng-show="accommodation.keyStringAccommodationEntity == null || accommodation.keyStringAccommodationEntity == ''">
+      <h4>No result</h4>
+      <p>Please select information again.</p>
+    </center>
+  </ion-content>
+</ion-view>

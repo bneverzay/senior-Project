@@ -1,0 +1,69 @@
+<ion-view title="Detail Room">
+  <ion-content padding="true" class="has-header">
+    <div class="list card">
+      <div class="item item-body">
+
+        <img class="full-image" src="http://2-dot-pjpnd-166013.appspot.com/getFileContent?blobkey={{accommodation.pictureaccommodation}}">
+
+        <h4 ng-show="accommodation.typeofaccommodation == 'apartment'">{{accommodation.accommodationname}} Apartment</h4>
+        <h4 ng-show="accommodation.typeofaccommodation == 'house'">{{accommodation.accommodationname}} House</h4>
+        <p ng-show="accommodation.typeofaccommodation == 'apartment'">Room Number {{room.roomnumber}}</p>
+        <p ng-show="accommodation.typeofaccommodation == 'house'">House Number {{room.housenumber}}</p>
+
+        <h4 ng-show="accommodation.typeofaccommodation == 'apartment'">Status of room</h4>
+        <h4 ng-show="accommodation.typeofaccommodation == 'house'">Status of house</h4>
+        <p ng-show="rentalID == room.keyStringRoomEntity">Not Availale</p>
+        <p ng-show="rentalID == room.keyStringRoomEntity">Today to {{rentalmoveoutaccommodation}}</p>
+        <p ng-hide="rentalID == room.keyStringRoomEntity">Availale</p>
+
+        <h4 ng-show="accommodation.typeofaccommodation == 'apartment'">Type of Room</h4>
+        <p ng-show="room.typeroomofapartment == 'fan'">Fan</p>
+        <p ng-show="room.typeroomofapartment == 'airconditioner'">Air Conditioner</p>
+
+        <h4 ng-show="accommodation.typeofaccommodation == 'house'">Information of House</h4>
+        <p ng-show="accommodation.typeofaccommodation == 'house'">Number of Bedroom: {{room.numberofbedroom}} Room</p>
+        <p ng-show="accommodation.typeofaccommodation == 'house'">Number of Bathroom: {{room.numberofbathroom}} Room</p>
+        <p ng-show="accommodation.typeofaccommodation == 'house'">Living Room: {{room.livingroom}}</p>
+        <p ng-show="accommodation.typeofaccommodation == 'house'">Kitchen Room: {{room.kitchenroom}}</p>
+        <p ng-show="accommodation.typeofaccommodation == 'house'">House Size: {{room.accommodationsize}} Square meter</p>
+        <p ng-show="accommodation.typeofaccommodation == 'house' && room.typeofbed == 'singlebed'">Type of Bed: Single bed</p>
+        <p ng-show="accommodation.typeofaccommodation == 'house' && room.typeofbed == 'doublebed'">Type of Bed: Double bed</p>
+        <p ng-show="accommodation.typeofaccommodation == 'house' && room.typeofbed == 'singlebedanddoublebed'">Type of Bed: Single bed, Double bed</p>
+        <p ng-show="accommodation.typeofaccommodation == 'house' && room.typeofbathroom == 'sharedbathroom'">Type of Bathroom: Shared bathroom</p>
+        <p ng-show="accommodation.typeofaccommodation == 'house' && room.typeofbathroom == 'separatebathroom'">Type of Bathroom: Separate bathroom</p>
+        <p ng-show="accommodation.typeofaccommodation == 'house' && room.typeofbathroom == 'sharedbathroomandseparatebathroom'">Type of Bathroom: Shared bathroom, Separate bathroom</p>
+        <p ng-show="accommodation.typeofaccommodation == 'house'">Max Capacity: {{room.maxcapacity}} Person/Room</p>
+        <p ng-show="accommodation.typeofaccommodation == 'house'">Rent: {{room.rent}} Baht</p>
+        <p ng-show="accommodation.typeofaccommodation == 'house'">Deposit: {{room.deposit}} Baht</p>
+        <p ng-show="accommodation.typeofaccommodation == 'house'">rentalagreement: {{room.rentalagreement}} {{room.typeofrentalagreement}}</p>
+
+        <h4 ng-show="accommodation.typeofaccommodation == 'apartment'">Information of Apartment</h4>
+        <p ng-show="accommodation.typeofaccommodation == 'apartment'">Balcony Apartment: {{room.balconyapartment}}</p>
+        <p ng-show="accommodation.typeofaccommodation == 'apartment'">Apartment Size: {{room.accommodationsize}} Square meter</p>
+        <p ng-show="accommodation.typeofaccommodation == 'apartment' && room.typeofbed == 'singlebed'">Type of Bed: Single bed</p>
+        <p ng-show="accommodation.typeofaccommodation == 'apartment' && room.typeofbed == 'doublebed'">Type of Bed: Double bed</p>
+        <p ng-show="accommodation.typeofaccommodation == 'apartment' && room.typeofbathroom == 'sharedbathroom'">Type of Bathroom: Shared bathroom</p>
+        <p ng-show="accommodation.typeofaccommodation == 'apartment' && room.typeofbathroom == 'separatebathroom'">Type of Bathroom: Separate bathroom</p>
+        <p ng-show="accommodation.typeofaccommodation == 'apartment'">Max Capacity: {{room.maxcapacity}} Person</p>
+        <p ng-show="accommodation.typeofaccommodation == 'apartment'">Rent: {{room.rent}} Baht</p>
+        <p ng-show="accommodation.typeofaccommodation == 'apartment'">Deposit: {{room.deposit}} Baht</p>
+        <p ng-show="accommodation.typeofaccommodation == 'apartment'">rentalagreement: {{room.rentalagreement}} {{room.typeofrentalagreement}}</p>
+
+        <h4 ng-hide="rentalID == room.keyStringRoomEntity">Date move into the accommodation</h4>
+        <h4 ng-hide="rentalID == room.keyStringRoomEntity">Check In</h4>
+        <label class="item item-input" ng-hide="rentalID == room.keyStringRoomEntity">
+          <input type="date" name="moveinaccommodation" min="{{date | date:'yyyy-MM-dd'}}" ng-model="moveinaccommodation">
+        </label>
+
+        <h4 ng-hide="rentalID == room.keyStringRoomEntity || moveinaccommodation == null || moveinaccommodation == ''">Check Out</h4>
+        <label class="item item-input" ng-hide="rentalID== room.keyStringRoomEntity || moveinaccommodation == null || moveinaccommodation == ''">
+          <input type="date" name="moveoutaccommodation" min="{{moveinaccommodation | date:'yyyy-MM-dd'}}" ng-model="moveoutaccommodation">
+        </label>
+
+        <div class="class-button-search" ng-hide="memberID == member.keyStringMemberEntity || rentalID == room.keyStringRoomEntity || member.keyStringMemberEntity == null || member.keyStringMemberEntity == '' || moveoutaccommodation == null || moveoutaccommodation == ''">
+          <button class="button button-positive  button-block icon-left ion-key" ng-click="showConfirmBookingForMember(date,accommodation,room,member,moveinaccommodation,moveoutaccommodation)">Booking</button>
+        </div>
+      </div>
+    </div>
+  </ion-content>
+</ion-view>

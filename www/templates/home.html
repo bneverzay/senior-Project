@@ -1,0 +1,104 @@
+<ion-view title="Home">
+  <ion-content padding="true" class="has-header">
+
+    <ion-refresher on-refresh="doRefresh()">
+    </ion-refresher>
+
+    <h4 class="text-search" style="text-align: center;">Type of accommodation</h4>
+    <label class="item item-input item-select">
+          <span class="input-label">Select:</span>    
+          <select ng-model="search.typeofaccommodation">
+            <option value="apartment">Apartment</option>
+            <option value="house">House</option>
+          </select>
+        </label>
+    <h4 class="text-search" style="text-align: center;" ng-show="search.typeofaccommodation == 'apartment'">Type of apartment</h4>
+    <label class="item item-input item-select" ng-show="search.typeofaccommodation == 'apartment'">
+          <span class="input-label">Select:</span>    
+          <select ng-model="search.typeofapartment">
+            <option value="maleapartment">Male apartment</option>
+            <option value="femaleapartment">Female apartment</option>
+            <option value="bothapartment">Both apartment</option>
+          </select>
+        </label>
+    <h4 class="text-search" style="text-align: center;">Rent rates</h4>
+    <h6 class="text-search" style="text-align: center;">{{search.valuerentrates}} Baht/Month</h6>
+    <div class="list">
+      <div class="item range range-positive">
+        <i class="icon ion-social-usd-outline"></i>
+        <input type="range" name="volume" min="0" max="20000" value="0" step="100" ng-model="search.valuerentrates">
+        <i class="icon ion-social-usd"></i>
+      </div>
+    </div>
+    <h4 class="text-search" style="text-align: center;">Deposit rates</h4>
+    <h6 class="text-search" style="text-align: center;">{{search.valuedepositrates}} Baht/Month</h6>
+    <div class="list">
+      <div class="item range range-positive">
+        <i class="icon ion-social-usd-outline"></i>
+        <input type="range" name="volume" min="0" max="20000" value="0" step="100" ng-model="search.valuedepositrates">
+        <i class="icon ion-social-usd"></i>
+      </div>
+    </div>
+    <h4 class="text-search" style="text-align: center;">Province</h4>
+    <div class="list">
+      <label class="item item-input item-select">
+          <div class="input-label">
+            Select
+          </div>
+          <select ng-model="search.province">
+            <option value="ChiangRai">Chiang Rai</option>
+          </select>
+        </label>
+    </div>
+    <h4 class="text-search" style="text-align: center;" ng-show="search.province == 'ChiangRai'">District</h4>
+    <div class="list" ng-show="search.province == 'ChiangRai'">
+      <label class="item item-input item-select">
+          <div class="input-label">
+            Select
+          </div>
+          <select ng-model="search.district">
+            <option ng-show="MueangChiangRai == 'MueangChiangRai'" value="MueangChiangRai">Mueang Chiang Rai</option>
+            <option ng-show="WiangChai == 'WiangChai'" value="WiangChai">Wiang Chai</option>
+            <option ng-show="ChiangKhong == 'ChiangKhong'" value="ChiangKhong">Chiang Khong</option>
+            <option ng-show="Thoeng == 'Thoeng'" value="Thoeng">Thoeng</option>
+            <option ng-show="Phan == 'Phan'" value="Phan">Phan</option>
+            <option ng-show="PaDaet == 'PaDaet'" value="PaDaet">Pa Daet</option>
+            <option ng-show="MaeChan == 'MaeChan'" value="MaeChan">Mae Chan</option>
+            <option ng-show="ChiangSaen == 'ChiangSaen'" value="ChiangSaen">Chiang Saen</option>
+            <option ng-show="MaeSai == 'MaeSai'" value="MaeSai">Mae Sai</option>
+            <option ng-show="MaeSuai == 'MaeSuai'" value="MaeSuai">Mae Suai</option>
+            <option ng-show="WiangPaPao == 'WiangPaPao'" value="WiangPaPao">Wiang Pa Pao</option>
+            <option ng-show="PhayaMengrai == 'PhayaMengrai'" value="PhayaMengrai">Phaya Mengrai</option>
+            <option ng-show="WiangKaen == 'WiangKaen'" value="WiangKaen">Wiang Kaen</option>
+            <option ng-show="KhunTan == 'KhunTan'" value="KhunTan">Khun Tan</option>
+            <option ng-show="MaeFaLuang == 'MaeFaLuang'" value="MaeFaLuang">Mae Fa Luang</option>
+            <option ng-show="MaeLao == 'MaeLao'" value="MaeLao">Mae Lao</option>
+            <option ng-show="WiangChiangRung == 'WiangChiangRung'" value="WiangChiangRung">Wiang Chiang Rung</option>
+            <option ng-show="DoiLuang == 'DoiLuang'" value="DoiLuang">Doi Luang</option>
+          </select>
+        </label>
+    </div>
+    <h4 class="text-search" style="text-align: center;">Facilities in the room</h4>
+    <ion-list>
+      <ion-checkbox ng-model="search.fan" class="item item-icon-right"><i class="icon ion-chatbubble muted"></i>Fan</ion-checkbox>
+      <ion-checkbox ng-model="search.airconditioner" class="item item-icon-right"><i class="icon ion-chatbubble muted"></i>Air conditioner</ion-checkbox>
+      <ion-checkbox ng-model="search.waterheater" class="item item-icon-right"><i class="icon ion-chatbubble muted"></i>Water heater</ion-checkbox>
+      <ion-checkbox ng-model="search.refrigerator" class="item item-icon-right"><i class="icon ion-chatbubble muted"></i>Refrigerator</ion-checkbox>
+      <ion-checkbox ng-model="search.television" class="item item-icon-right"><i class="icon ion-chatbubble muted"></i>Television</ion-checkbox>
+      <ion-checkbox ng-model="search.furniture" class="item item-icon-right"><i class="icon ion-chatbubble muted"></i>Furniture</ion-checkbox>
+    </ion-list>
+    <h4 class="text-search" style="text-align: center;">Facilities in the accommodation</h4>
+    <ion-list>
+      <ion-checkbox ng-model="search.carpark" class="item item-icon-right"><i class="icon ion-chatbubble muted"></i>Car park</ion-checkbox>
+      <ion-checkbox ng-model="search.closedcircuitcamera" class="item item-icon-right"><i class="icon ion-chatbubble muted"></i>Closed-circuit camera</ion-checkbox>
+      <ion-checkbox ng-show="search.typeofaccommodation == 'apartment'" ng-model="search.elevator" class="item item-icon-right"><i class="icon ion-chatbubble muted"></i>Elevator</ion-checkbox>
+      <ion-checkbox ng-show="search.typeofaccommodation == 'apartment'" ng-model="search.washingmachine" class="item item-icon-right"><i class="icon ion-chatbubble muted"></i>Washingmachine</ion-checkbox>
+      <ion-checkbox ng-show="search.typeofaccommodation == 'apartment'" ng-model="search.drinkingwaterdispenser" class="item item-icon-right"><i class="icon ion-chatbubble muted"></i>Drinking water dispenser</ion-checkbox>
+      <ion-checkbox ng-show="search.typeofaccommodation == 'apartment'" ng-model="search.swimmingpool" class="item item-icon-right"><i class="icon ion-chatbubble muted"></i>Swimming pool</ion-checkbox>
+      <ion-checkbox ng-show="search.typeofaccommodation == 'apartment'" ng-model="search.fitness" class="item item-icon-right"><i class="icon ion-chatbubble muted"></i>Fitness</ion-checkbox>
+      <ion-checkbox ng-show="search.typeofaccommodation == 'apartment'" ng-model="search.keycard" class="item item-icon-right"><i class="icon ion-chatbubble muted"></i>Keycard</ion-checkbox>
+    </ion-list>
+    <button id="home-button8" class="button button-positive  button-block icon-left ion-android-search" ng-click="search(search)">Search</button>
+
+  </ion-content>
+</ion-view>

@@ -1,0 +1,104 @@
+<ion-view title="Detail Accommodation">
+  <ion-content padding="true" class="has-header">
+
+    <div class="list card">
+      <div class="item item-body">
+        <img class="full-image" src="http://2-dot-pjpnd-166013.appspot.com/getFileContent?blobkey={{accommodation.pictureaccommodation}}">
+
+        <h4 ng-show="accommodation.typeofaccommodation == 'apartment'">{{accommodation.accommodationname}} Apartment</h4>
+        <h4 ng-show="accommodation.typeofaccommodation == 'house'">{{accommodation.accommodationname}} House</h4>
+        <p>{{accommodation.address}}, {{accommodation.district}}, {{accommodation.province}}</p>
+        <p><i class="icon ion-android-call"> {{accommodation.telephone}}</i></p>
+        <p><i class="icon ion-android-mail"> {{accommodation.email}}</i></p>
+
+        <h4>Facilities in {{accommodation.typeofaccommodation}}</h4>
+        <ion-grid>
+          <ion-row>
+            <ion-col width-45 ng-show="accommodation.fan == 'fan'">Fan</ion-col>
+            <ion-col width-45 ng-show="accommodation.airconditioner == 'airconditioner'">, Air Conditioner</ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col width-45 ng-show="accommodation.waterheater == 'waterheater'">, Water Heater</ion-col>
+            <ion-col width-45 ng-show="accommodation.refrigerator == 'refrigerator'">, Refrigerator</ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col width-45 ng-show="accommodation.television == 'television'">, Television</ion-col>
+            <ion-col width-45 ng-show="accommodation.furniture == 'furniture'">, Furniture</ion-col>
+          </ion-row>
+        </ion-grid>
+
+        <h4>Facilities of {{accommodation.typeofaccommodation}}</h4>
+        <ion-grid>
+          <ion-row>
+            <ion-col width-35 ng-show="accommodation.carpark == 'carpark'">Carpark</ion-col>
+            <ion-col width-45 ng-show="accommodation.closedcircuitcamera == 'closedcircuitcamera'">, Closed-circuit Camera</ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col width-45 ng-show="accommodation.elevator == 'elevator'">, Elevator</ion-col>
+            <ion-col width-45 ng-show="accommodation.washingmachine == 'washingmachine'">, Washing Machine</ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col width-45 ng-show="accommodation.drinkingwaterdispenser == 'drinkingwaterdispenser'">, Drinking Water Dispenser</ion-col>
+            <ion-col width-45 ng-show="accommodation.swimmingpool == 'swimmingpool'">, Swimming Pool</ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col width-45 ng-show="accommodation.fitness == 'fitness'">, Fitness</ion-col>
+            <ion-col width-45 ng-show="accommodation.keycard == 'keycard'">, Keycard</ion-col>
+          </ion-row>
+        </ion-grid>
+
+        <h4>Photo</h4>
+        <img class="full-image" style="margin-bottom: 1%;" ng-repeat="roomphoto in roomphotos" ng-show="roomphoto.accommodationID == accommodation.keyStringAccommodationEntity"
+          src="http://2-dot-pjpnd-166013.appspot.com/getFileContent?blobkey={{roomphoto.roomphoto}}">
+
+        <h4 ng-show="accommodation.typeofaccommodation == 'apartment'">Rooms</h4>
+        <h4 ng-show="accommodation.typeofaccommodation == 'house'">House</h4>
+        <!-- Apartment -->
+        <h5 ng-show="accommodation.typeofaccommodation == 'apartment'">Fan</h5>
+        <div class="list" ng-repeat="roomlist in roomlists" ng-show="accommodation.typeofaccommodation == 'apartment' && accommodation.keyStringAccommodationEntity == roomlist.accommodationID && roomlist.typeroomofapartment == 'fan'">
+          <a class="item item-icon-left" ui-sref="detailRoom({accommodationID:accommodation.keyStringAccommodationEntity,roomID:'{{roomlist.keyStringRoomEntity}}',memberID:member.keyStringMemberEntity})">
+            <i class="icon ion-clipboard"></i> {{roomlist.roomnumber}}
+            <span class="item-note">
+                {{roomlist.rent}} Baht/Month 
+              </span>
+          </a>
+        </div>
+        <h5 ng-show="accommodation.typeofaccommodation == 'apartment'">Air Conditioner</h5>
+        <div class="list" ng-repeat="roomlist in roomlists" ng-show="accommodation.typeofaccommodation == 'apartment' && accommodation.keyStringAccommodationEntity == roomlist.accommodationID && roomlist.typeroomofapartment == 'airconditioner'">
+          <a class="item item-icon-left" ui-sref="detailRoom({accommodationID:accommodation.keyStringAccommodationEntity,roomID:'{{roomlist.keyStringRoomEntity}}',memberID:member.keyStringMemberEntity})">
+            <i class="icon ion-clipboard"></i> {{roomlist.roomnumber}}
+            <span class="item-note">
+                {{roomlist.rent}} Baht/Month 
+              </span>
+          </a>
+        </div>
+        <!-- ./ Apartment -->
+        <!-- House -->
+        <div class="list" ng-repeat="roomlist in roomlists" ng-show="accommodation.typeofaccommodation == 'house' && accommodation.keyStringAccommodationEntity == roomlist.accommodationID">
+          <a class="item item-icon-left" ui-sref="detailRoom({accommodationID:accommodation.keyStringAccommodationEntity,roomID:'{{roomlist.keyStringRoomEntity}}',memberID:member.keyStringMemberEntity})">
+            <i class="icon ion-clipboard"></i> {{roomlist.housenumber}}
+            <span class="item-note">
+                {{roomlist.rent}} Baht/Month 
+              </span>
+          </a>
+        </div>
+        <!-- ./ House -->
+        <h4>Reviews</h4>
+      </div>
+      <div class="item item-avatar item-icon-right" ng-repeat="review in reviews" ng-if="review.accommodationID == accommodation.keyStringAccommodationEntity">
+        <img src="img/userpic.png">
+        <h2 ng-repeat="members in membercheck" ng-if="review.accommodationID == accommodation.keyStringAccommodationEntity && review.memberID == members.keyStringMemberEntity">{{members.firstname}} {{members.lastname}}</h2>
+        <p>{{review.comment}}</p>
+        <i class="icon ion-chatbubble muted" ng-show="member.keyStringMemberEntity == null || member.keyStringMemberEntity == ''"></i>
+        <a><i class="icon ion-trash-b" ng-if="review.memberID == member.keyStringMemberEntity" ng-click="showConfirmReviewDelete(review,accommodation,member)"></i></a>
+      </div>
+      <div class="item item-input-inset" ng-hide="member.keyStringMemberEntity == null || member.keyStringMemberEntity == ''">
+        <img class="img-comments" style="height: 30px;width: auto;max-height: 100%;max-width: 100%;" src="img/userpic.png">
+        <label class="item-input-wrapper" style="margin-left: 1%;">
+              <input id="comment" name="comment" type="text" maxlength="60" placeholder="Comments" ng-model="review.comment">
+          </label>
+        <button class="button button-small" ng-click="saveReview(review,accommodation,member)"><i class="icon ion-android-send"></i></button>
+      </div>
+    </div>
+  </ion-content>
+</ion-view>

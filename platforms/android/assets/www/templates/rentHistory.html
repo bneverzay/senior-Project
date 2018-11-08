@@ -1,0 +1,18 @@
+<ion-view title="Rent History">
+  <ion-content padding="true" class="has-header">
+
+    <ion-refresher on-refresh="doRefresh()">
+    </ion-refresher>
+
+    <div class="list">
+      <a class="item item-avatar" ui-sref="menu.detailRent({memberID:member.keyStringMemberEntity, rentalinvoiceID:rentalinvoice.keyStringRentalInvoiceEntity})"
+        ng-repeat="rentalinvoice in rentalinvoices" ng-if="member.keyStringMemberEntity == rentalinvoice.memberID">
+        <img src="img/logo.png">
+        <h2>Total rent:<span> {{rentalinvoice.totalrent}} Baht.</span></h2>
+        <h3><i class="icon ion-card" ng-show="rentalinvoice.statuspayment == 'unpayment'"> Have not paid yet</i></h3>
+        <h3><i class="icon ion-card" ng-show="rentalinvoice.statuspayment == 'paymented'"> Payment successfully</i></h3>
+        <p><i class="icon ion-clock"> {{rentalinvoice.date}}</i></p>
+      </a>
+    </div>
+  </ion-content>
+</ion-view>

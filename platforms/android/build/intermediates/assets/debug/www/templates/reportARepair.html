@@ -1,0 +1,45 @@
+<ion-view title="Report a Repair">
+  <ion-content padding="true" class="has-header">
+    <form class="list" name="reportaRepair" novalidate>
+      <label class="item item-input" ng-repeat="accommodation in accommodations" ng-if="accommodation.keyStringAccommodationEntity == rental.accommodationID && accommodation.typeofaccommodation == 'apartment'">
+        <span class="input-label">Room:</span>
+        <input id="roomnumber" name="roomnumber" type="text" ng-repeat="room in rooms" ng-if="room.keyStringRoomEntity == rental.roomID" placeholder="{{room.roomnumber}}" disabled>
+      </label>
+      <label class="item item-input" ng-repeat="accommodation in accommodations" ng-if="accommodation.keyStringAccommodationEntity == rental.accommodationID && accommodation.typeofaccommodation == 'house'">
+        <span class="input-label">House:</span>
+        <input id="housenumber" name="housenumber" type="text" ng-repeat="room in rooms" ng-if="room.keyStringRoomEntity == rental.roomID" placeholder="{{room.housenumber}}" disabled>
+      </label>
+      <label class="item item-input">
+        <span class="input-label">Name:</span>
+        <input id="name" name="name" type="text" placeholder="{{member.firstname}} {{member.lastname}}" disabled>
+      </label>
+      <label class="item item-input">
+        <span class="input-label">Telephone:</span>
+        <input id="telephone" name="telephone" type="text" placeholder="{{member.telephone}}" disabled>
+      </label>
+      <label class="item item-input">
+        <span class="input-label">Email:</span>
+        <input id="email" name="email" type="text" placeholder="{{member.email}}" disabled>
+      </label>
+      <label class="item item-input">
+        <span class="input-label">Subject:</span>
+        <input id="subject" name="subject" type="text" maxlength="30" placeholder="Enter subject" ng-model="report.subject" required>
+      </label>
+      <div class="padding">
+        <p style="color: #FF0000;" ng-show="reportaRepair.subject.$error.required">* Subject is required</p>
+      </div>
+      <label class="item item-input">
+        <span class="input-label">Message:</span>
+        <textarea id="message" name="message" type="text" maxlength="60" placeholder="Enter message" ng-model="report.message" required></textarea>
+      </label>
+      <div class="padding">
+        <p style="color: #FF0000;" ng-show="reportaRepair.message.$error.required">* Message is required</p>
+      </div>
+      <div class="row" ng-repeat="room in rooms" ng-if="room.keyStringRoomEntity == rental.roomID">
+        <button id="send" class="button button-positive  button-block icon-left ion-android-send" ng-disabled="reportaRepair.$invalid"
+          ng-repeat="accommodation in accommodations" ng-if="accommodation.keyStringAccommodationEntity == rental.accommodationID"
+          ng-click="saveReportarepair(report,member,accommodation,room)">Send</button>
+      </div>
+    </form>
+  </ion-content>
+</ion-view>

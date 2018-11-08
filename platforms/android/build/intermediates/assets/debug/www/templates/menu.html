@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<ion-side-menus enable-menu-with-back-views="false">
+  <ion-side-menu-content>
+    <ion-nav-bar class="bar-stable">
+      <ion-nav-back-button></ion-nav-back-button>
+      <ion-nav-buttons side="left">
+        <button class="button button-icon button-clear ion-navicon" menu-toggle="left"></button>
+      </ion-nav-buttons>
+    </ion-nav-bar>
+    <ion-nav-view name="side-menu21"></ion-nav-view>
+  </ion-side-menu-content>
+  <ion-side-menu side="left">
+    <ion-header-bar class="bar-stable">
+      <div class="title">Menu</div>
+    </ion-header-bar>
+    <ion-content padding="false" class="side-menu-left has-header ">
+      <ion-list id="menu-list1">
+        <ion-item class="item-icon-right" ui-sref="menu.home({memberID:member.keyStringMemberEntity})">Home
+          <i class="icon ion-android-home"></i>
+        </ion-item>
+        <ion-item class="item-icon-right" ui-sref="signIn" ng-show="member.keyStringMemberEntity == null || member.keyStringMemberEntity == ''">Sign In
+          <i class="icon ion-log-in"></i>
+        </ion-item>
+        <ion-item class="item-icon-right" ui-sref="menu.notification({memberID:member.keyStringMemberEntity})" ng-hide="member.keyStringMemberEntity == null || member.keyStringMemberEntity == ''">Notification
+          <i class="icon ion-android-globe"></i>
+        </ion-item>
+        <ion-item class="item-icon-right" ui-sref="menu.accountInfo({memberID:member.keyStringMemberEntity})" ng-hide="member.keyStringMemberEntity == null || member.keyStringMemberEntity == ''">Account Info
+          <i class="icon ion-android-person"></i>
+        </ion-item>
+        <ion-item class="item-icon-right" ui-sref="menu.changePassword({memberID:member.keyStringMemberEntity})" ng-hide="member.keyStringMemberEntity == null || member.keyStringMemberEntity == ''">Change Password
+          <i class="icon ion-android-lock"></i>
+        </ion-item>
+        <ion-item class="item-icon-right" ui-sref="menu.accommodationInfo({memberID:member.keyStringMemberEntity,rentalID:rental.keyStringRentalEntity})" ng-hide="member.keyStringMemberEntity == null || member.keyStringMemberEntity == ''"
+          ng-repeat="rental in rentals" ng-if="member.keyStringMemberEntity == rental.memberIDforBooking && rental.statusbooking == 'approve' && rental.statuspayment == 'paymented' && rental.statusstay == 'movein'">Accommodation Info
+          <i class="icon ion-document-text"></i>
+        </ion-item>
+        <ion-item class="item-icon-right" ui-sref="menu.bookingStatus({memberID:member.keyStringMemberEntity,rentalID:rental.keyStringRentalEntity})" ng-hide="member.keyStringMemberEntity == null || member.keyStringMemberEntity == ''"
+          ng-repeat="rental in rentals" ng-if="member.keyStringMemberEntity == rental.memberIDforBooking && rental.statusbooking == 'unapprove'">Booking Status
+          <i class="icon ion-android-time"></i>
+        </ion-item>
+        <ion-item class="item-icon-right" ui-sref="menu.statusStay({memberID:member.keyStringMemberEntity,rentalID:rental.keyStringRentalEntity})" ng-hide="member.keyStringMemberEntity == null || member.keyStringMemberEntity == ''"
+          ng-repeat="rental in rentals" ng-if="member.keyStringMemberEntity == rental.memberIDforBooking && rental.statusbooking == 'approve' && rental.statuspayment == 'paymented' && rental.statusstay == 'moving'"> Status Stay
+          <i class="icon ion-android-time"></i>
+        </ion-item>
+        <ion-item class="item-icon-right" ui-sref="menu.paymentBooking({memberID:member.keyStringMemberEntity,rentalID:rental.keyStringRentalEntity})" ng-hide="member.keyStringMemberEntity == null || member.keyStringMemberEntity == ''"
+          ng-repeat="rental in rentals" ng-if="member.keyStringMemberEntity == rental.memberIDforBooking && rental.statusbooking == 'approve' && rental.statuspayment == 'nopayment'">Payment Booking
+          <i class="icon ion-card"></i>
+        </ion-item>
+        <ion-item class="item-icon-right" ui-sref="menu.rentHistory({memberID:member.keyStringMemberEntity})" ng-hide="member.keyStringMemberEntity == null || member.keyStringMemberEntity == ''"
+          ng-repeat="rental in rentals" ng-if="member.keyStringMemberEntity == rental.memberIDforBooking && rental.statusbooking == 'approve' && rental.statuspayment == 'paymented' && rental.statusstay == 'movein'">Rent History
+          <i class="icon ion-android-clipboard"></i>
+        </ion-item>
+        <ion-item class="item-icon-right" ui-sref="menu.reportARepair({memberID:member.keyStringMemberEntity,rentalID:rental.keyStringRentalEntity})" ng-hide="member.keyStringMemberEntity == null || member.keyStringMemberEntity == ''"
+          ng-repeat="rental in rentals" ng-if="member.keyStringMemberEntity == rental.memberIDforBooking && rental.statusbooking == 'approve' && rental.statuspayment == 'paymented' && rental.statusstay == 'movein'">Report a Repair
+          <i class="icon ion-settings"></i>
+        </ion-item>
+        <ion-item class="item-icon-right" ng-hide="member.keyStringMemberEntity == null || member.keyStringMemberEntity == ''" ng-click="logout()">Sign Out
+          <i class="icon ion-log-out"></i>
+        </ion-item>
+      </ion-list>
+    </ion-content>
+  </ion-side-menu>
+</ion-side-menus>

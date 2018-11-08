@@ -1,0 +1,31 @@
+<ion-view title="Notification">
+  <ion-content padding="true" class="has-header">
+
+    <ion-refresher on-refresh="doRefresh()">
+    </ion-refresher>
+
+    <div class="list">
+
+      <div class="item item-avatar" ng-repeat="rental in rentals" ng-if="member.keyStringMemberEntity == rental.memberIDforBooking" ng-hide="rental.replybooking == null || rental.replybooking == ''">
+        <img src="img/logo.png">
+        <h2>Message reply booking:</h2>
+        <p> {{rental.replybooking}}.</p>
+        <p><i class="icon ion-clock"> {{rental.replybookingdate}}</i></p>
+      </div>
+
+      <a class="item item-avatar" ui-sref="menu.rentHistory" ng-repeat="rentalinvoice in rentalinvoices" ng-if="member.keyStringMemberEntity == rentalinvoice.memberID">
+        <img src="img/logo.png">
+        <h2>Total rent:<span> {{rentalinvoice.totalrent}} Baht.</span></h2>
+        <p><i class="icon ion-clock"> {{rentalinvoice.date}}</i></p>
+      </a>
+
+      <div class="item item-avatar" ng-repeat="reportarepair in reportarepairs" ng-if="member.keyStringMemberEntity == reportarepair.memberID"
+        ng-hide="reportarepair.replyreportarepair == null || reportarepair.replyreportarepair == ''">
+        <img src="img/logo.png">
+        <h2>Message reply repair:<span> {{reportarepair.replyreportarepair}}.</span></h2>
+        <p><i class="icon ion-clock"> {{reportarepair.replyreportarepairdate}}</i></p>
+      </div>
+
+    </div>
+  </ion-content>
+</ion-view>

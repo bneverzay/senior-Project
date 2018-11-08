@@ -1,0 +1,14 @@
+<ion-view title="Booking Status">
+  <ion-content padding="true" class="has-header">
+    <div class="list card">
+      <a class="item item-avatar item-icon-right" ng-repeat="accommodation in accommodations" ng-if="accommodation.keyStringAccommodationEntity == rental.accommodationID"
+        ng-click="showConfirmDelete(member,rental)">
+        <img src="img/logo.png">
+        <h4 ng-show="accommodation.typeofaccommodation == 'apartment'">{{accommodation.accommodationname}} Apartment</h4>
+        <h4 ng-show="accommodation.typeofaccommodation == 'house'">{{accommodation.accommodationname}} House</h4>
+        <p>Waiting for lessor approval.</p>
+        <i class="icon ion-trash-b"></i>
+      </a>
+    </div>
+  </ion-content>
+</ion-view>

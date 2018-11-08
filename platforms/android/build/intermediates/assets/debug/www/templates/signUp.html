@@ -1,0 +1,75 @@
+<ion-view title="Sign Up">
+  <ion-content padding="true" class="has-header">
+    <form class="list" name="signpAccount" novalidate>
+      <label class="item item-input">
+        <span class="input-label">Username:</span>
+        <input id="username" name="username" type="text" maxlength="30" placeholder="Enter username" ng-model="register.username" required>
+      </label>
+      <div class="padding">
+        <p style="color: #FF0000;" ng-show="signpAccount.username.$error.required">* Username is required</p>
+      </div>
+      <label class="item item-input">
+        <span class="input-label">Password:</span>
+        <input id="password" name="password" type="password" minlength="8" maxlength="16" placeholder="Enter password" ng-model="register.password" required>
+      </label>
+      <div class="padding">
+        <p style="color: #FF0000;" ng-show="signpAccount.password.$error.required">* Password is required</p>
+      </div>
+      <label class="item item-input">
+        <span class="input-label">First name:</span>
+        <input id="firstname" name="firstname" type="text" maxlength="30" placeholder="Enter first name" ng-model="register.firstname" required>
+      </label>
+      <div class="padding">
+        <p style="color: #FF0000;" ng-show="signpAccount.firstname.$error.required">* First name is required</p>
+      </div>
+      <label class="item item-input">
+        <span class="input-label">Last name:</span>
+        <input id="lastname" name="lastname" type="text" maxlength="30" placeholder="Enter last name" ng-model="register.lastname" required>
+      </label>
+      <div class="padding">
+        <p style="color: #FF0000;" ng-show="signpAccount.lastname.$error.required">* Last name is required</p>
+      </div>
+      <label class="item item-input">
+        <span class="input-label">Birthdate:</span>
+        <input id="birthdate" name="birthdate" type="date" ng-model="getbirthdate" required>
+      </label>
+      <div class="padding">
+        <p style="color: #FF0000;" ng-show="signpAccount.birthdate.$error.required">* Birthdate is required</p>
+      </div>
+
+      <h4 style="color:#000000;font-weight:400;">Gender:</h4>
+      <ion-radio id="male" name="gender" ng-model="register.gender" ng-value="'Male'">Male</ion-radio>
+      <ion-radio id="female" name="gender" ng-model="register.gender" ng-value="'Female'">Female</ion-radio>
+      <div class="spacer" style="width: 300px; height: 15px;"></div>
+      <label class="item item-input">
+        <span class="input-label">Address:</span><textarea id="address" name="address" maxlength="60" placeholder="Enter address" ng-model="register.address" required></textarea>
+      </label>
+      <div class="padding">
+        <p style="color: #FF0000;" ng-show="signpAccount.address.$error.required">* Address is required</p>
+      </div>
+
+      <h4 style="color:#000000;font-weight:400;">Occupation:</h4>
+      <ion-radio id="student" name="occupation" ng-model="register.occupation" ng-value="'Student'">Student</ion-radio>
+      <ion-radio id="teacher" name="occupation" ng-model="register.occupation" ng-value="'Teacher'">Teacher</ion-radio>
+      <ion-radio id="security-guard" name="occupation" ng-model="register.occupation" ng-value="'Security-guard'">Security guard</ion-radio>
+      <ion-radio id="maid" name="occupation" ng-model="register.occupation" ng-value="'Maid'">Maid</ion-radio>
+      <div class="spacer" style="width: 300px; height: 15px;"></div>
+      <label class="item item-input">
+        <span class="input-label">Telephone:</span>
+        <input id="telephone" name="telephone" type="text" maxlength="10" placeholder="Enter telephone" ng-model="register.telephone" required>
+      </label>
+      <div class="padding">
+        <p style="color: #FF0000;" ng-show="signpAccount.telephone.$error.required">* Telephone is required</p>
+      </div>
+      <label class="item item-input" name="email">
+        <span class="input-label">Email:</span>
+        <input id="email" name="email" type="email" maxlength="30" placeholder="Enter email" ng-model="register.email" required>
+      </label>
+      <div class="padding">
+        <p style="color: #FF0000;" ng-show="signpAccount.email.$error.required">* Email is required</p>
+      </div>
+      <button class="button button-positive button-block icon-left ion-android-checkmark-circle" ng-disabled="signpAccount.$invalid"
+        ng-click="signup(register,getbirthdate)">Confirm</button>
+    </form>
+  </ion-content>
+</ion-view>
